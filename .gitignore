@@ -1,0 +1,14 @@
+#database of users willing to receive menu updates
+db.json
+
+#Telegram API key
+token.txt
+
+#current menu files
+Monday.txt
+Tuesday.txt
+Wednesday.txt
+Thursday.txt
+Friday.txt
+
+#
