@@ -43,7 +43,7 @@ def handle_unsub(message):
 def handle_unsub(message):
     today = datetime.datetime.today().weekday() 
     if today > 4: 
-        bot.reply_to(message,"Today is weekend, the canteen is closed, the choice is between vendig machine, pub or staying hungry :-(.")
+        bot.reply_to(message,"Today is weekend, the canteen is closed, the choice is between vending machine, pub or staying hungry :-(.")
     else:
         weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday']
         with open(weekdays[today]+'.txt') as menu_file:
