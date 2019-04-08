@@ -1,5 +1,6 @@
 #database of users willing to receive menu updates
 db.json
+ratings_db.json
 
 #Telegram API key
 token.txt
