@@ -59,7 +59,7 @@ class RatingHandler:
         lunch_names = self.ReadLunchesFromTxt(truncation) 
         for i in range(len(votes)):
             if not votes[i]:
-                auxiliary_string = "No ratings yet" if not votes[i] 
+                auxiliary_string = "No ratings yet"
             else:
                 auxiliary_string =  '%.1f/4' % np.mean(votes[i])  
                 auxiliary_string += ' from ' +str(len(votes[i]))+' votes'
