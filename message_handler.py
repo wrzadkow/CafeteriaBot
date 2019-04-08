@@ -1,6 +1,7 @@
 import telebot
 from tinydb import TinyDB, Query
 import datetime
+import Ratings
 
 with open('token.txt') as token_file:  #token from BotFather stored in separate token.txt file
     token=token_file.readline()
@@ -50,6 +51,39 @@ def handle_unsub(message):
             to_send = menu_file.read()
         chat_id = message.chat.id
         bot.send_message(chat_id,to_send)
+
+@bot.message_handler(commands=['rate'])
+def handle_rate_command(message):
+    handler = Ratings.RatingHandler(bot,message.chat.id)
+    db = TinyDB('ratings_db.json')
+    query = Query()
+    search_results = db.search(query.id_of_rating_chat == message.chat.id)
+    if not search_results:
+        state = 0
+    else:
+        #print('search results',search_results)
+        state = search_results[0]['state']
+    handler.HandleRating(state, message, db)
+
+@bot.message_handler(regexp='^[1-4].*') #digits 0-4
+def handle_rate_number(message):
+    handler = Ratings.RatingHandler(bot,message.chat.id)
+    db = TinyDB('ratings_db.json')
+    query = Query()
+    search_results = db.search(query.id_of_rating_chat == message.chat.id)
+    if not search_results:
+        state = 0
+    else:
+        state = search_results[0]['state']
+    digit = int(message.text[0])
+    handler.HandleDigit(digit, state, message, db, query)
+    
+@bot.message_handler(commands=['stats'])
+def handle_stats(message):
+    handler = Ratings.RatingHandler(bot,message.chat.id)
+    db = TinyDB('ratings_db.json')
+    query = Query()
+    handler.HandleStats(message, db, query)
 
 @bot.message_handler(func = lambda message: True) #handle all other messages
 def echo_all(message):
