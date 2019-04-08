@@ -18,3 +18,6 @@ ideas/
 #Rating stats archive and subscriber database backups
 stats_archive/
 subscribers_archive/
+
+#Python cache
+__pycache__/
