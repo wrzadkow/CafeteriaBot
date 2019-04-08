@@ -13,3 +13,7 @@ Friday.txt
 
 #Mainly .ipynb notebooks for crash-testing ideas
 ideas/
+
+#Rating stats archive and subscriber database backups
+stats_archive/
+subscribers_archive/
