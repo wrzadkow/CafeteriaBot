@@ -84,7 +84,7 @@ class RatingHandler:
         return '\n'.join(strings)
 
     def DishKeyboard(self):
-        lunches = self.ReadLunchesFromTxt(truncation = 3)
+        lunches = self.ReadLunchesFromTxt(truncation = 10)
         markup = telebot.types.ReplyKeyboardMarkup()
         items = [telebot.types.KeyboardButton(str(i+1)+'. ' + lunches[i]) for i in range(len(lunches))]
         markup.row(items[0])
