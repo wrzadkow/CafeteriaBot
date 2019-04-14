@@ -11,6 +11,9 @@ class RatingHandler:
     def MesCheat(self): 
         return "Don't cheat please ;). You already voted today." 
 
+    def MesNotTime(self): 
+        return "It's not the right time to rate the dishes. I accept ratings between 11.30 and 22.00 on weekdays." 
+
     def MesNoRatings(self): 
         return "Nobody voted today yet, sorry." 
 
@@ -32,6 +35,17 @@ class RatingHandler:
 
     def MesAskRating(self):
         return "Thanks for letting me know your dish. What was the taste?"
+    
+    def RatingTimeCheck(self): #true if it is the right time for voting (weekdays 11.30-22.00)
+        weekday = datetime.datetime.today().weekday()
+        if weekday > 4:
+            return False
+        now = datetime.datetime.now()
+        voting_start_time = now.replace(hour=9, minute=30, second=0, microsecond=0) #2h GMT-CEST diff
+        voting_end_time = now.replace(hour=22, minute=0, second=0, microsecond=0)
+        if now < voting_start_time or now > voting_end_time:
+            return False
+        return True
     
     def ReadLunchesFromTxt(self, truncation):
         #truncation -- after how many spaces to truncate lunch string 
@@ -96,6 +110,9 @@ class RatingHandler:
 
     #Handles the case when a message from user starts from '1' '2' '3' '4'
     def HandleDigit(self, digit, state, message, database, query):
+        if self.RatingTimeCheck() == False:
+            self.bot.reply_to(message, self.MesHelpless())
+            return 0
         if state == 0 or state == 3:
             self.bot.reply_to(message, self.MesHelpless())
             self.bot.send_message(self.chat_id, "", reply_markup=telebot.types.ReplyKeyboardRemove(selective=False))
@@ -115,6 +132,9 @@ class RatingHandler:
 
     #Handles the case when user sends /rate command
     def HandleRating(self, state, message, database):
+        if self.RatingTimeCheck() == False:
+            self.bot.reply_to(message, self.MesNotTime())
+            return 0
         if state == 3:
             self.bot.reply_to(message, self.MesCheat(), reply_markup=telebot.types.ReplyKeyboardRemove(selective=False))
             return 0
