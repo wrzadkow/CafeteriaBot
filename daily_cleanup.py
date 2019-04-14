@@ -1,5 +1,5 @@
 import Ratings
-from tinydb import TinyDB, query
+from tinydb import TinyDB, Query
 import datetime
 import shutil
 
@@ -12,7 +12,7 @@ shutil.copyfile('db.json','subscribers_archive/'+date_string+'db.json')
 #generate rating stats report and save it
 db = TinyDB('ratings_db.json')
 query = Query()
-responses = database.search( query.state == 3)
+responses = db.search( query.state == 3)
 handler = Ratings.RatingHandler()
 report = handler.GenerateStatsReport(responses, truncation=20)
 filename = 'stats_archive/'+date_string+'txt'
