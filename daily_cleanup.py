@@ -14,10 +14,12 @@ db = TinyDB('ratings_db.json')
 query = Query()
 responses = db.search( query.state == 3)
 handler = Ratings.RatingHandler()
-report = handler.GenerateStatsReport(responses, truncation=20)
-filename = 'stats_archive/'+date_string+'txt'
-with open(filename, 'w+') as report_file:
-    report_file.write(report)
+
+if datetime.datetime.today().weekday() < 5: #on weekdays only
+	report = handler.GenerateStatsReport(responses, truncation=20)
+	filename = 'stats_archive/'+date_string+'txt'
+	with open(filename, 'w+') as report_file:
+	    report_file.write(report)
    
 #flush the ratings database
 db.purge()
