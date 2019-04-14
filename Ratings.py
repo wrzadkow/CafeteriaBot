@@ -37,14 +37,17 @@ class RatingHandler:
         #truncation -- after how many spaces to truncate lunch string 
         #(e.g. "international beef steak" insatead of full name if truncation=3)
         today = datetime.datetime.today().weekday() 
-        weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday']
-        with open(weekdays[today]+'.txt') as menu_file:
-            menu = menu_file.read()
-        menu=menu.splitlines()
-        positions=[5,7,9] #lines corresponding to three menus
-        def TruncAt(st, occurence, nth): #Returns string s truncated at the nth occurrence of the delimiter d.
-            return occurence.join(st.split(occurence)[:nth])        
-        lunches = [TruncAt(menu[position],' ',truncation) for position in positions]
+        if today < 5:
+            weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday']
+            with open(weekdays[today]+'.txt') as menu_file:
+                menu = menu_file.read()
+            menu=menu.splitlines()
+            positions=[5,7,9] #lines corresponding to three menus
+            def TruncAt(st, occurence, nth): #Returns string s truncated at the nth occurrence of the delimiter d.
+                return occurence.join(st.split(occurence)[:nth])        
+            lunches = [TruncAt(menu[position],' ',truncation) for position in positions]
+        else:
+            lunches = 'Not a weekday.'
         return lunches
 
     def GenerateStatsReport(self, responses, truncation):
