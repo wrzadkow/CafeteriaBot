@@ -17,5 +17,5 @@ This is a Telegram bot to rate cafeteria dishes in my institute. Apart from that
 
 ### Additional screenshots
 
-<img src="/screenshots/rating.gif" width="300" align="left"/>
-<img src="/screenshots/rating.gif" width="300" align="left"/>
+<img src="/screenshots/stats.png" width="300" align="left"/>
+<img src="/screenshots/menu.png" width="300" align="left"/>
