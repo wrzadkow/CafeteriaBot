@@ -1,0 +1,6 @@
+rate - Rate today's lunch
+stats - Get today's ratings from others
+sub - Subscribe to daily morning menu updates
+unsub - Unsubscribe from them
+menu - Get today's menu
+help - Get help
