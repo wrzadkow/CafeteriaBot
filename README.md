@@ -3,8 +3,8 @@ This is a Telegram bot to rate cafeteria dishes in my institute. Apart from that
 ### User commands
 * rate given day's dishes with `/rate` command
 * see the current rating results with `/stats` command
-* get current menu with `\menu` command
-* subsribe to (`/sub`) and unsubscribe from (`\unsub`) daily menu updates
+* get current menu with `/menu` command
+* subsribe to (`/sub`) and unsubscribe from (`/unsub`) daily menu updates
 
 ### How it works
 * `message_handler.py` is a script that handles all incoming messages. It should be running permanently. It handles all bot logic by itself, apart from dish rating. This, due to larger complexity then the rest of the logic, is done in a separate module `Ratings.py`. This module implements a class `RatingHandler`. An object of this class is created when a user requests a 
