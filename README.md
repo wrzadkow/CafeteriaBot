@@ -1,3 +1,5 @@
+
+<img src="/screenshots/rating.gif" width="300" align="right"/>
 This is a Telegram bot to rate cafeteria dishes in my institute. Apart from that, it features on-demand or daily updates on the menu.
 
 ### User commands
@@ -13,3 +15,5 @@ This is a Telegram bot to rate cafeteria dishes in my institute. Apart from that
 * `menu_scrapper.py` scraps the menu from the Institute website using BeautifulSoup and saves it to files named from `Monday.txt` till `Friday.txt`. In principle it is enough to run it on Monday when a new weekly menu is updated but due to possible changes I run it daily.
 * the Telegram API token is stored in `token.txt` file, which is obviously not included in the repository
 
+<img src="/screenshots/rating.gif" width="300" align="left"/>
+<img src="/screenshots/rating.gif" width="300" align="left"/>
