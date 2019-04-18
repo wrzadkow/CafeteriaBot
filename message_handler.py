@@ -10,7 +10,9 @@ bot = telebot.TeleBot(token)
   
 @bot.message_handler(commands = ['start', 'help'])
 def send_welcome(message):
-    bot.reply_to(message, """Hi! I can send you the menu listing the gourmet delices of the canteen on demand or daily in the morning.\n
+    bot.reply_to(message, """Hi! \n
+    To rate today's lunch, use the /rate command. \n
+    To see today's ratings, use the /stats command. \n
     To get today's menu, use the /menu command. \n
     To subscribe to daily morning menu updates, use the /sub command. \n
     To unsubscribe, use the /unsub command. \n
