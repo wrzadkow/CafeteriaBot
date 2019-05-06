@@ -20,8 +20,10 @@ if today<5: # week, not weekend
         message = menu_file.read()
     for chat in interested_chats:
         chat_id=chat['id_of_willing_chat']
-        bot.send_message(chat_id,message)
-        
+        try:
+            bot.send_message(chat_id,message)
+        except telebot.apihelper.ApiException as e:
+            print(e)
 
 
 
