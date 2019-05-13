@@ -15,15 +15,22 @@ bot = telebot.TeleBot(token)
 
 today = datetime.datetime.today().weekday() #today's day of the week
 
+counter_attempts = 0
+counter_fails = 0
+
 if today<5: # week, not weekend
     with open(weekdays[today]+'.txt') as menu_file:
         message = menu_file.read()
     for chat in interested_chats:
         chat_id=chat['id_of_willing_chat']
+        counter_attempts += 1
         try:
             bot.send_message(chat_id,message)
         except telebot.apihelper.ApiException as e:
             print(e)
+            counter_fails += 1
+
+print("Attempted to send to",counter_attempts,"people, failed in",counter_fails,"cases")
 
 
 
