@@ -3,9 +3,9 @@ from tinydb import TinyDB, Query
 import datetime
 import Ratings
 
-with open('token.txt') as token_file:  #token from BotFather stored in separate token.txt file
-    token=token_file.readline()
-token=token.rstrip('\n') #readline() leaves '\n' at the end which causes 404 error
+with open('token.txt') as token_file:  # BotFather token stored in token.txt.
+    token = token_file.readline()
+token = token.rstrip('\n')  # readline() leaves unwanted '\n' at the end.
 bot = telebot.TeleBot(token)
   
 @bot.message_handler(commands = ['start', 'help'])
